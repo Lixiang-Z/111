@@ -77,15 +77,28 @@ void Map::Move(int direct){///<蛇移动一步，判断存活和吃食物
 }
 
 void Map::CreateFood(){///<每吃一次食物后，地图随机生成一个新食物
-
+       int food_x=0,food_y=0;
+    	srand(time(0));
+			do {
+				food_x=rand()%(N-2)+1;
+				food_y=rand()%(N-2)+1;
+			  }while(map(food_x,food_y).state!=0);
+			map(food_x,food_y).state=3;
 }
 
 bool Map::CheckEaten(){///<判断这一步是否吃到食物
-
+     if(map(Snake->SnakeBody_x.back(),Snake->SnakeBody_y.back()).state==3){
+    	score+=10;	//每次得分可根据难度进行修改
+        ++snake->SnakeLenth;
+    	void CreateFood();
+    	return true;
+	}else return false;
 }
 
 void Map::CheckDead(){///<判断这一步是否撞墙或撞到自身
-
+    if(Snake->SnakeBodyX.back()==0||Snake->SnakeBodyX.back()==N-1||Snake->SnakeBodyY.back()==0||Snake->SnakeBodyY.back()==N-1){//判断是否撞墙 
+       return true;
+	}
 }
 
 void Map::Replay(){///<重新开始游戏
