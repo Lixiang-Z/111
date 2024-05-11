@@ -47,7 +47,8 @@ typedef struct {
  */
 
 typedef struct{
-		std::queue<int> SnakeBody[2];
+		std::queue<int> SnakeBodyX;
+		std::queue<int> SnakeBodyY;
 		Direction SnakeDirection;
 		int SnakeLenth;
 } Snake;
