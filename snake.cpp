@@ -19,7 +19,7 @@ Map::~Map(){
     delete snake;
 }
 
-void Map::InitMap(){
+void Map::InitMap(){///<地图整体的初始化
     InitSnake();
     int i,j;
     for( i = 0;i<SIZE;++i){//这里可以增加地图编辑选择，障碍物也在这里放
@@ -36,7 +36,7 @@ void Map::InitMap(){
 
 }
 
-void Map::InitSnake(){
+void Map::InitSnake(){///<蛇的初始化
     while(!snake->SnakeBodyX.empty()){
         snake->SnakeBodyX.pop();
     }
@@ -49,7 +49,7 @@ void Map::InitSnake(){
     snake->SnakeLenth=1;
 }
 
-void Map::Move(int direct){
+void Map::Move(int direct){///<蛇移动一步，判断存活和吃食物
     int i,j;
     i=snake->SnakeBodyX.back(); 
     j=snake->SnakeBodyY.back();
@@ -76,20 +76,20 @@ void Map::Move(int direct){
     CheckDead();
 }
 
-void Map::CreateFood(){
+void Map::CreateFood(){///<每吃一次食物后，地图随机生成一个新食物
 
 }
 
-bool Map::CheckEaten(){
+bool Map::CheckEaten(){///<判断这一步是否吃到食物
 
 }
 
-void Map::CheckDead(){
+void Map::CheckDead(){///<判断这一步是否撞墙或撞到自身
 
 }
 
-void Map::Replay(){
-
+void Map::Replay(){///<重新开始游戏
+     InitMap();
 }
 
 int Map::GetScore(){return score;}
