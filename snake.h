@@ -19,12 +19,19 @@ enum Level{es,nm,hd,at};///<Level决定蛇的移动速度
   hd = 2
   at = 3 */
 
-enum Thing{Empty,Barrier,Snake,Fruit};///<地图各点是什么
+
+
+enum Thing{Empty,Barrier,Snake,Food};///<地图各点是什么
 /*Empty=0
 Barrier=1
 Snake=2
-Fruit=3 */
+Food=3 */
 
+/*!
+ * @brief 地图每个点
+ * @param state 点对应的物品
+ * @param SnakeNext 是否是蛇下一步走的位置，便于判定
+ */
 
 typedef struct {
 	Thing state;
@@ -35,22 +42,27 @@ typedef struct {
 /*!
  * @brief 蛇
  * @param snakebody 蛇的每一个位置用二维队列存储，对应每个点的横纵坐标
- * @param if_last 这个棋子是不是最后下的
+ * @param SnakeDirection 蛇下一步方向
+ * @param SnakeLenth 蛇的长度，用于计分
  */
 
 typedef struct{
-		queue<int> SnakeBody[2];
+		std::queue<int> SnakeBody[2];
 		Direction SnakeDirection;
 		int SnakeLenth;
-		Level Speed;
 } Snake;
 
-
+/*!
+ * @brief 地图
+ * @param map 地图上的所有点
+ * @param snake 蛇，（后续可以增加一条蛇，双人模式）
+ * @param score 计算吃food所得分数
+ */
 
 class Map {
 	private:
 		MapDot** map;
-		Snake snake;
+		Snake* snake;
 		int score;
 
 	public:
@@ -69,9 +81,4 @@ class Map {
 };
 
 
-int score;
 
-ChooseOption     ChooseMap       	Out    Stop   Restart	
-		 	 SetEnd       	
-		ShowSnake    ShowBlock    ShowBall   (ShowPoint)   
-			Display
